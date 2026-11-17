@@ -1,0 +1,26 @@
+# PolarGrid AI - Renewable Energy Configuration
+# Simulated solar PV and wind turbine systems for polar research station
+
+solar:
+  capacity_kw: 50.0            # Installed PV capacity (kWp)
+  efficiency: 0.18             # Panel efficiency at STC
+  temp_coefficient: -0.004     # Power temperature coefficient (%/°C, typical for Si)
+  stc_temperature_c: 25.0      # Standard Test Conditions temperature
+  noct_c: 45.0                 # Nominal Operating Cell Temperature
+  min_irradiance_wm2: 10.0     # Minimum irradiance for generation
+  inverter_efficiency: 0.96    # DC-AC inverter efficiency
+  degradation_rate_per_year: 0.005  # Annual degradation (0.5%)
+
+wind:
+  capacity_kw: 100.0           # Rated turbine capacity
+  num_turbines: 2              # Number of turbines
+  cut_in_speed_ms: 3.0         # Cut-in wind speed (m/s)
+  rated_speed_ms: 12.0         # Rated wind speed (m/s)
+  cut_out_speed_ms: 25.0       # Cut-out wind speed (m/s)
+  hub_height_m: 30.0           # Hub height
+  measurement_height_m: 10.0   # ERA5 wind measurement height
+  roughness_length_m: 0.001    # Surface roughness (ice/snow)
+  air_density_ref_kg_m3: 1.225 # Reference air density at sea level
+
+# Note: These represent hypothetical installations sized for a research station.
+# Actual Antarctic renewable installations face extreme engineering challenges.

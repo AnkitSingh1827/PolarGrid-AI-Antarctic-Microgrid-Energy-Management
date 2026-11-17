@@ -1,0 +1,44 @@
+{
+    "rule_based": {
+        "controller": "Rule-Based",
+        "total_fuel_litres": 11441.86,
+        "total_cost_usd": 31382.3,
+        "total_unmet_kwh": 0.0,
+        "renewable_utilization_pct": 43.18,
+        "reliability_pct": 100.0,
+        "diesel_run_hours": 704,
+        "diesel_startups": 27,
+        "battery_throughput_kwh": 13033.25,
+        "soc_boundary_events": 1395,
+        "avg_cost_per_hour": 15.6912,
+        "fuel_savings_vs_baseline_pct": 0.0
+    },
+    "ppo": {
+        "controller": "PPO",
+        "total_fuel_litres": 12215.0,
+        "total_cost_usd": 33945.16,
+        "total_unmet_kwh": 7.42,
+        "renewable_utilization_pct": 43.18,
+        "reliability_pct": 99.9919,
+        "diesel_run_hours": 859,
+        "diesel_startups": 38,
+        "battery_throughput_kwh": 13033.25,
+        "soc_boundary_events": 1395,
+        "avg_cost_per_hour": 16.9726,
+        "fuel_savings_vs_baseline_pct": -6.76
+    },
+    "sac": {
+        "controller": "SAC",
+        "total_fuel_litres": 11960.0,
+        "total_cost_usd": 33604.66,
+        "total_unmet_kwh": 7.42,
+        "renewable_utilization_pct": 43.18,
+        "reliability_pct": 99.9919,
+        "diesel_run_hours": 808,
+        "diesel_startups": 68,
+        "battery_throughput_kwh": 13033.25,
+        "soc_boundary_events": 1395,
+        "avg_cost_per_hour": 16.8023,
+        "fuel_savings_vs_baseline_pct": -4.53
+    }
+}

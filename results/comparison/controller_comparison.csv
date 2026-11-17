@@ -1,0 +1,4 @@
+controller,total_fuel_litres,total_cost_usd,total_unmet_kwh,renewable_utilization_pct,reliability_pct,diesel_run_hours,diesel_startups,battery_throughput_kwh,soc_boundary_events,avg_cost_per_hour,fuel_savings_vs_baseline_pct
+Rule-Based,11441.86,31382.3,0.0,43.18,100.0,704,27,13033.25,1395,15.6912,0.0
+PPO,12215.0,33945.16,7.42,43.18,99.9919,859,38,13033.25,1395,16.9726,-6.76
+SAC,11960.0,33604.66,7.42,43.18,99.9919,808,68,13033.25,1395,16.8023,-4.53

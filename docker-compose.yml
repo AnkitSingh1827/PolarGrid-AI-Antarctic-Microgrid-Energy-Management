@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  polargrid-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: polargrid_ai
+    restart: unless-stopped
+    ports:
+      - "8501:8501" # Streamlit Dashboard
+      - "8000:8000" # FastAPI Backend
+    environment:
+      - APP_ENV=production
+      - API_PORT=8000
+      - DASHBOARD_PORT=8501
+    volumes:
+      - ./data:/app/data
+      - ./models:/app/models
+      - ./results:/app/results
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3

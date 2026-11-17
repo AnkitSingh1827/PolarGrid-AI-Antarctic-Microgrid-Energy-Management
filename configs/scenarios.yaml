@@ -1,0 +1,64 @@
+# PolarGrid AI - Polar Scenario Definitions
+# Each scenario modifies physical/system conditions logically
+
+scenarios:
+  normal:
+    name: "Normal Operation"
+    description: "Standard operating conditions, all systems nominal"
+    duration_hours: 168  # 1 week
+    modifications: {}
+
+  polar_night:
+    name: "Polar Night"
+    description: "Extended darkness period (May-July), zero solar irradiance"
+    duration_hours: 168
+    modifications:
+      solar_irradiance_multiplier: 0.0    # No sunlight
+      temperature_offset_c: -8.0          # Colder during polar night
+      load_increase_fraction: 0.15        # More heating + lighting
+      cloud_cover_override: null          # Keep actual cloud data
+
+  extreme_cold:
+    name: "Extreme Cold Event"
+    description: "Severe cold snap with temperatures below -35°C"
+    duration_hours: 72   # 3-day event
+    modifications:
+      temperature_override_min_c: -40.0   # Force extreme cold
+      temperature_offset_c: -15.0         # Additional cooling
+      load_increase_fraction: 0.30        # Significant heating demand
+      battery_capacity_derating: 0.20     # 20% battery capacity loss from cold
+      wind_speed_multiplier: 1.3          # Often windy during cold events
+
+  low_renewable:
+    name: "Low Renewable Availability"
+    description: "Overcast skies and calm winds reduce renewable generation"
+    duration_hours: 120  # 5 days
+    modifications:
+      solar_irradiance_multiplier: 0.15   # Heavy cloud cover
+      wind_speed_multiplier: 0.3          # Very light winds
+      cloud_cover_override: 0.95          # Overcast
+
+  load_spike:
+    name: "Sudden Load Spike"
+    description: "Unexpected high demand from emergency or equipment"
+    duration_hours: 24
+    modifications:
+      load_increase_fraction: 0.50        # 50% load increase
+      critical_load_increase_kw: 15.0     # Additional critical systems
+      spike_start_hour: 6                 # When spike begins
+
+  generator_failure:
+    name: "Diesel Generator Failure"
+    description: "Primary diesel generator offline, reduced backup capacity"
+    duration_hours: 48
+    modifications:
+      diesel_capacity_multiplier: 0.50    # Only one of two generators available
+      diesel_min_load_multiplier: 0.50    # Adjusted minimum load
+      failure_start_hour: 12              # When failure occurs
+
+# Evaluation settings
+evaluation:
+  comparison_methods: ["rule_based", "milp", "milp_rl"]
+  metrics: ["fuel_consumption_l", "fuel_cost_usd", "renewable_utilization_pct",
+            "critical_load_reliability_pct", "battery_cycles", "generator_runtime_h",
+            "generator_starts", "unmet_load_kwh", "operating_cost_usd"]

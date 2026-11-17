@@ -1,0 +1,24 @@
+# PolarGrid AI - Diesel Generator Configuration
+# Simulated diesel generator set for polar research station backup power
+
+diesel:
+  capacity_kw: 150.0           # Rated generator capacity
+  min_load_fraction: 0.30      # Minimum operating load (30% of capacity)
+  num_generators: 2            # Number of generator units
+
+  # Fuel consumption: fuel_lph = a + b * P_diesel (linear model)
+  fuel_intercept_lph: 5.0      # No-load fuel consumption (L/h)
+  fuel_slope_lph_per_kw: 0.25  # Marginal fuel consumption (L/h per kW)
+
+  # Cost parameters
+  fuel_cost_per_liter: 2.50    # USD per liter (Antarctic delivered cost is very high)
+  startup_cost_usd: 15.0       # Cost per generator start event
+  maintenance_cost_per_hour: 3.0  # USD per running hour
+
+  # Operational constraints
+  min_runtime_hours: 2         # Minimum runtime once started
+  min_downtime_hours: 1        # Minimum downtime after shutdown
+  ramp_rate_kw_per_min: 10.0   # Maximum ramp rate
+
+# Note: Antarctic fuel delivery costs are extremely high due to logistics.
+# These parameters are representative, not based on actual Maitri generator specs.

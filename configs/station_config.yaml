@@ -1,0 +1,30 @@
+# PolarGrid AI - Station Configuration
+# Modeled after Indian Antarctic Research Station Maitri
+# Location: Schirmacher Oasis, East Antarctica
+
+station:
+  name: "Maitri Research Station (Simulated)"
+  latitude: -70.75
+  longitude: 11.75
+  elevation_m: 117
+  timezone: "UTC"
+  description: "Physics-informed simulation based on ERA5 reanalysis at Maitri coordinates"
+
+# Station load parameters (calibrated to Antarctic research station patterns)
+load:
+  base_load_kw: 35.0          # Minimum always-on systems (comms, life support, lighting)
+  peak_load_kw: 120.0         # Maximum station demand
+  critical_load_fraction: 0.40 # Fraction of load that is critical (life support, comms)
+  heating_coefficient: 0.8     # kW increase per degree below -10°C
+  heating_threshold_c: -10.0   # Temperature below which heating ramps up
+  research_load_peak_kw: 25.0  # Additional research equipment load
+  research_hours: [8, 9, 10, 11, 12, 13, 14, 15, 16, 17]  # Active research hours (UTC)
+  noise_std_kw: 3.0           # Random operational variation
+
+# Data provenance
+provenance:
+  weather_source: "ERA5 hourly reanalysis (ECMWF)"
+  weather_validation: "NCPOR Maitri AWS (2012-2016), AntAWS network"
+  energy_reference: "Australian Antarctic Division electricity/fuel records"
+  energy_status: "Physics-informed simulation (NOT real Maitri measurements)"
+  note: "All energy variables are simulated. Weather data is real reanalysis."
