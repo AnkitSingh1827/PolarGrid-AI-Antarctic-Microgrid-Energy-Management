@@ -130,9 +130,12 @@ PROJECT_ROOT = Path('.').resolve().parent if Path('.').resolve().name == 'notebo
 sys.path.insert(0, str(PROJECT_ROOT))
 """),
     md_cell("## 1. Load Processed Clean Weather Data"),
-    code_cell("""from src.data.cleaning import clean_era5_data, clean_ncpor_data
-weather_path = PROJECT_ROOT / "data" / "processed" / "weather_processed.csv"
-df_weather = pd.read_csv(weather_path, nrows=2000)
+    code_cell("""from src.data.cleaning import clean_era5, clean_ncpor_maitri
+
+era5_path = PROJECT_ROOT / "data" / "raw" / "ERA5" / "ERA5_raw_original.csv"
+df_era5_raw = pd.read_csv(era5_path, nrows=2000)
+df_weather = clean_era5(df_era5_raw)
+print("Cleaned weather shape:", df_weather.shape)
 df_weather.head()
 """),
     md_cell("## 2. Feature Engineering: Wind Components & Solar Radiance"),

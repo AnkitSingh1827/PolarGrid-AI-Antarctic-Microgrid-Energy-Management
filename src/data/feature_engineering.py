@@ -77,3 +77,37 @@ def generate_lags_and_rolling(df: pd.DataFrame, target_cols: list, lags: list, w
                 df[f"{col}_roll_std_{window}"] = df[col].shift(1).rolling(window=window).std()
                 
     return df
+
+def create_features(df: pd.DataFrame) -> pd.DataFrame:
+    """Create notebook-ready temporal and weather features from cleaned ERA5 data."""
+    df = df.copy()
+
+    time_col = "valid_time" if "valid_time" in df.columns else "timestamp"
+    if time_col not in df.columns:
+        raise KeyError("Weather data must contain 'valid_time' or 'timestamp'")
+
+    if time_col == "valid_time":
+        df = df.rename(columns={"valid_time": "timestamp"})
+
+    df = add_temporal_features(df, "timestamp")
+
+    if "temperature" not in df.columns and "temperature_c" in df.columns:
+        df["temperature"] = df["temperature_c"]
+    if "pressure" not in df.columns and "pressure_hpa" in df.columns:
+        df["pressure"] = df["pressure_hpa"]
+    if "wind_speed" not in df.columns and "wind_speed_ms" in df.columns:
+        df["wind_speed"] = df["wind_speed_ms"]
+    if "solar_radiation" not in df.columns and "solar_irradiance_wm2" in df.columns:
+        df["solar_radiation"] = df["solar_irradiance_wm2"]
+
+    if "wind_direction" not in df.columns and {"u10", "v10"}.issubset(df.columns):
+        df["wind_direction"] = (
+            np.degrees(np.arctan2(df["u10"], df["v10"])) % 360.0
+        )
+
+    if "humidity" not in df.columns and {"temperature_c", "dewpoint_c"}.issubset(df.columns):
+        df["humidity"] = calculate_relative_humidity(
+            df["temperature_c"], df["dewpoint_c"]
+        )
+
+    return df

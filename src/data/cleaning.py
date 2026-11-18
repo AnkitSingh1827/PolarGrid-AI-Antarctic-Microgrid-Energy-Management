@@ -129,3 +129,7 @@ def clean_australian_fuel(df: pd.DataFrame) -> pd.DataFrame:
     # Remove NaN values in target value_litres
     df = df.dropna(subset=["value_litres"])
     return df
+
+# Backward-compatible names used by older notebooks and scripts.
+clean_era5_data = clean_era5
+clean_ncpor_data = clean_ncpor_maitri
