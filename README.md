@@ -397,3 +397,5 @@ python cli.py benchmark
 - Australian Antarctic reference data: Australian Antarctic Division
 - Project context: Smart India Hackathon 2026, Problem Statement 26061
 - Main software libraries: XGBoost, Pyomo, Gymnasium, Stable-Baselines3, FastAPI, and Streamlit
+#   P o l a r G r i d - A I - A n t a r c t i c - M i c r o g r i d - E n e r g y - M a n a g e m e n t  
+ 
